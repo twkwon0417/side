@@ -8,9 +8,9 @@ public interface MemberRepository {
 
     public Member save(Member member);
 
-    public Optional<Member> findByLoginIdAndBirth(String loginId, LocalDate birthDate);
+    public Optional<Member> findByLoginIdAndPhoneNumber(String loginId, String phoneNumber);
 
-    public Optional<Member> findById(Long id);
+    public Member findById(Long id);
 
     public List<Member> findAll();
 
