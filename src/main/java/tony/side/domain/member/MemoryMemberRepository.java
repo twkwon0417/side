@@ -41,5 +41,6 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public void clear() {
         storage.clear();
+        sequence.set(0L);
     }
 }
