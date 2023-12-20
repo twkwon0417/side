@@ -1,6 +1,7 @@
 package tony.side.domain.member;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 

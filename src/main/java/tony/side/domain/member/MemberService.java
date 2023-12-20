@@ -18,8 +18,8 @@ public class MemberService {
         return memberRepository.findByLoginIdAndPhoneNumber(loginId, phoneNumber);
     }
 
-    public void findById(long id) {
-        memberRepository.findById(id);
+    public Member findById(long id) {
+        return memberRepository.findById(id);
     }
 
     public void editMemberInfo(Long id, Member newMember) { // 아이디, 비밀번호는 못 바꾸지
