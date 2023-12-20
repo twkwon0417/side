@@ -10,5 +10,7 @@ public interface PostRepository {
 
     public Post findById(Long id);
 
+    public void delete(Long id);
+
     public void clear();
 }
