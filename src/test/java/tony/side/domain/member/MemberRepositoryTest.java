@@ -1,4 +1,4 @@
-package tony.side.member;
+package tony.side.domain.member;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,9 +18,9 @@ public class MemberRepositoryTest {
     @BeforeEach
     void init() {
         memberRepository.clear();
-        Member member1 = new Member("test1", "test1", "test1", "test1@test.com", LocalDate.of(2002, 4, 17),
+        Member member1 = new Member("test1", "test1", "test1", "test1@test.com",
                 "01024159056");
-        Member member2 = new Member("test2", "test2", "test2", "test2@test.com", LocalDate.of(2002, 4, 16),
+        Member member2 = new Member("test2", "test2", "test2", "test2@test.com",
                 "01024169056");
 
         memberRepository.save(member1);

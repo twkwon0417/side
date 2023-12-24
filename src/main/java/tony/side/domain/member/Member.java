@@ -13,18 +13,16 @@ public class Member {
     private String password;
     private String name;
     private String eMail;
-    private LocalDate birthDate;
     private String phoneNumber;
 
     public Member() {
     }
 
-    public Member(String loginId, String password, String name, String eMail, LocalDate birthDate, String phoneNumber) {
+    public Member(String loginId, String password, String name, String eMail, String phoneNumber) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
         this.eMail = eMail;
-        this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
     }
 }

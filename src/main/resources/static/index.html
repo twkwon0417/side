@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List of Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eaeaea;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      background-color: #999;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px;
+      border-radius: 4px;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .questions-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      margin-bottom: 16px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .question-body {
+      margin-bottom: 8px;
+    }
+
+    .additional-info {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .textarea-input {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      box-sizing: border-box; /* Ensure padding and border don't add to the width */
+    }
+
+    .send-button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>Site Name or Logo</div>
+  <div>
+    Welcome, Username!
+    <button class="logout-button">Logout</button>
+  </div>
+</div>
+
+<div class="navigation">
+  <a href="#" class="nav-link">Option 1</a>
+  <a href="#" class="nav-link">Option 2</a>
+</div>
+
+<div class="questions-container">
+  <div class="question">
+    <div class="question-title">Title 1</div>
+    <div class="question-body">This is the body of question 1.</div>
+    <div class="additional-info">
+      <form action="/submit" method="post">
+        <textarea class="textarea-input" name="additionalInfo" placeholder="Enter additional info"></textarea>
+        <button type="submit" class="send-button">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-title">Title 2</div>
+    <div class="question-body">This is the body of question 2.</div>
+    <div class="additional-info">
+      <form action="/submit" method="post">
+        <textarea class="textarea-input" name="additionalInfo" placeholder="Enter additional info"></textarea>
+        <button type="submit" class="send-button">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-title">Title 3</div>
+    <div class="question-body">This is the body of question 3.</div>
+    <div class="additional-info">
+      <form action="/submit" method="post">
+        <textarea class="textarea-input" name="additionalInfo" placeholder="Enter additional info"></textarea>
+        <button type="submit" class="send-button">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

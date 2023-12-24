@@ -27,7 +27,6 @@ public class MemberService {
         member.setName(newMember.getName());
         member.setName(newMember.getName());
         member.setEMail(newMember.getEMail());
-        member.setBirthDate(newMember.getBirthDate());
         member.setPhoneNumber(newMember.getPhoneNumber());
     }
 

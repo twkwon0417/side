@@ -1,4 +1,4 @@
-package tony.side.member;
+package tony.side.domain.member;
 
 import org.junit.jupiter.api.Test;
 

@@ -12,6 +12,8 @@ public interface MemberRepository {
 
     public Member findById(Long id);
 
+    public Optional<Member> findByLoginId(String loginId);
+
     public List<Member> findAll();
 
     public void clear();
