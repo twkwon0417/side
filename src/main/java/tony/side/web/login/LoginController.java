@@ -37,7 +37,8 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember.getId());
 
-        return "/questions/myquestions";
+
+        return "redirect:/post/myPage";
     }
 
 }
