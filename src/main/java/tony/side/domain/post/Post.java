@@ -10,12 +10,14 @@ public class Post {
     private Long id;
     private Long userId;
     private String title;
-    private String content;
+    private String question;
+    private String answer;
 
-    public Post(Long userId, String title, String content) {
+    public Post(Long userId, String title, String question) {
         this.userId = userId;
         this.title = title;
-        this.content = content;
+        this.question = question;
+        this.answer = null;
     }
 
     public Post() {

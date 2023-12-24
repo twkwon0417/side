@@ -18,14 +18,18 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
-    public List<Post> getPostByMemberId(Long memberId) {
-        return postRepository.findPostsByMemberId(memberId);
+    public List<Post> getUnansweredPostByMemberId(Long memberId) {
+        return postRepository.findUnansweredPostByMemberId(memberId);
+    }
+
+    public List<Post> getAnsweredPostByMemberId(Long memberId) {
+        return postRepository.findAnsweredPostByMemberId(memberId);
     }
 
     public void edit(Long postId, Post newPost) {
         Post post = postRepository.findById(postId);
         post.setTitle(newPost.getTitle());
-        post.setContent(newPost.getContent());
+        post.setQuestion(newPost.getQuestion());
     }
 
     public void delete(Long postId) {

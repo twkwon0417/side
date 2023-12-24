@@ -21,9 +21,16 @@ public class MemoryPostRepository implements PostRepository {
     }
 
     @Override
-    public List<Post> findPostsByMemberId(Long memberId) {
+    public List<Post> findUnansweredPostByMemberId(Long memberId) {
         return storage.values().stream()
-                .filter(post -> post.getUserId().equals(memberId))
+                .filter(post -> post.getUserId().equals(memberId) && post.getAnswer() == null)
+                .toList();
+    }
+
+    @Override
+    public List<Post> findAnsweredPostByMemberId(Long memberId) {
+        return storage.values().stream()
+                .filter(post -> post.getUserId().equals(memberId) && post.getAnswer() != null)
                 .toList();
     }
 

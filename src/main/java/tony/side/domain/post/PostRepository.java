@@ -6,7 +6,9 @@ public interface PostRepository {
 
     public Post save(Post post);
 
-    public List<Post> findPostsByMemberId(Long memberId);
+    public List<Post> findUnansweredPostByMemberId(Long memberId);
+
+    public List<Post> findAnsweredPostByMemberId(Long memberId);
 
     public Post findById(Long id);
 
