@@ -36,9 +36,10 @@
             text-decoration: none;
             color: #fff;
             padding: 8px;
-            border-radius: 4px;
             flex-grow: 1;
             text-align: center;
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
         }
 
         .questions-container {
@@ -48,6 +49,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .question {
@@ -79,7 +81,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             resize: vertical;
-            box-sizing: border-box; /* Ensure padding and border don't add to the width */
+            box-sizing: border-box;
         }
 
         .send-button {
@@ -91,16 +93,22 @@
             cursor: pointer;
         }
 
-        .top-right-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #007BFF;
+        .logout-button,
+        .login-button {
+            background-color: #e44d26;
             color: #fff;
             border: none;
-            padding: 8px 16px;
+            padding: 10px;
             border-radius: 4px;
             cursor: pointer;
+        }
+
+        .nav-link:last-child {
+            border-right: none;
+        }
+
+        .nav-link:first-child {
+            border-left: none;
         }
     </style>
 </head>
@@ -110,17 +118,17 @@
     <div>Site Name or Logo</div>
     <div>
         Welcome, Username!
-        <button class="logout-button">Logout</button>
+        <button th:if="${loggedInMember != null}" class="logout-button">Logout</button>
+        <button th:unless="${loggedInMember != null}" class="login-button">Login</button>
     </div>
 </div>
 
 <div class="navigation">
-    <a href="#" class="nav-link">Option 1</a>
-    <a href="#" class="nav-link">Option 2</a>
+    <a href="../myPage" class="nav-link">답변한 질문</a>
+    <a href="./unanswered" class="nav-link">답변하기 전 질문</a>
 </div>
 
 <div th:each="post : ${posts}" class="questions-container">
-    <button class="top-right-button">Top Right Button</button>
     <div class="question">
         <div class="question-title">Title 1</div>
         <div class="question-body">This is the body of question 1.</div>

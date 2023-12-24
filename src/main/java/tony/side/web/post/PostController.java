@@ -30,7 +30,8 @@ public class PostController {
             return "redirect:/post/myPage";
         }
         model.addAttribute("posts", postService.getAnsweredPostByMemberId(userId));
-        return "/questions/defaultquestions";
+        model.addAttribute("loggedInMember", loginUserId);
+        return "/questions/viewpage/showingpage";
     }
 
     @GetMapping("/myPage")
@@ -41,7 +42,7 @@ public class PostController {
         model.addAttribute("posts", answeredPostByMemberId);
         model.addAttribute("loggedInMember", memberId);
 
-        return "/questions/defaultquestions";
+        return "/questions/mypage/answered";
     }
 
     @GetMapping("/myPage/unanswered")
@@ -52,6 +53,6 @@ public class PostController {
         model.addAttribute("posts", unansweredPostByMemberId);
         model.addAttribute("loggedInMember", memberId);
 
-        return "/questions/myquestions";
+        return "/questions/mypage/unanswered";
     }
 }

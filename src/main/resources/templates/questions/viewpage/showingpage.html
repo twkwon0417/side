@@ -14,7 +14,7 @@
 
     .header {
       display: flex;
-      justify-content: space-between; /* Spread the content horizontally */
+      justify-content: space-between;
       align-items: center;
       background-color: #333;
       color: #fff;
@@ -36,9 +36,10 @@
       text-decoration: none;
       color: #fff;
       padding: 8px;
-      border-radius: 4px;
       flex-grow: 1;
       text-align: center;
+      border-right: 1px solid #fff;
+      border-left: 1px solid #fff;
     }
 
     .questions-container {
@@ -95,6 +96,14 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
+    .nav-link:last-child {
+      border-right: none;
+    }
+
+    .nav-link:first-child {
+      border-left: none;
+    }
   </style>
 </head>
 <body>
@@ -102,19 +111,19 @@
 <div class="header">
   <div>Site Name or Logo</div>
   <div>
-    <!-- Use Thymeleaf to conditionally render logout or login button -->
-    <button th:if="${loggedIn}" class="logout-button">Logout</button>
-    <button th:unless="${loggedIn}" class="login-button">Login</button>
+    welcome, Username!
+    <button th:if="${loggedInMember != null}" class="logout-button">Logout</button>
+    <button th:unless="${loggedInMember != null}" class="login-button">Login</button>
   </div>
 </div>
 
 <div class="navigation">
-  <a href="#" class="nav-link">Option 1</a>
-  <a href="#" class="nav-link">Option 2</a>
+  <a href="/post/myPage" class="nav-link">답변한 질문</a>
+  <a href="/post/myPage/unanswered" class="nav-link">답변하기 전 질문</a>
 </div>
 
 <div th:each="post : ${posts}" class="questions-container">
-  <button class="top-right-button">Top Right Button</button>
+  <button class="top-right-button">질문하기</button>
   <div class="question">
     <div class="question-title" th:text="${post.title}">Title 1</div>
     <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>

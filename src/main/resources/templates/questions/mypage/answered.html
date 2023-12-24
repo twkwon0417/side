@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List of Questions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eaeaea;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      background-color: #999;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px;
+      flex-grow: 1;
+      text-align: center;
+      border-right: 1px solid #fff;
+      border-left: 1px solid #fff;
+    }
+
+    .questions-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .question {
+      margin-bottom: 16px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .question-body {
+      margin-bottom: 8px;
+    }
+
+    .additional-info {
+      color: #666;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
+    .logout-button,
+    .login-button {
+      background-color: #e44d26;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .nav-link:last-child {
+      border-right: none;
+    }
+
+    .nav-link:first-child {
+      border-left: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>Site Name or Logo</div>
+  <div>
+    welcome, Username!
+    <button th:if="${loggedInMember != null}" class="logout-button">Logout</button>
+    <button th:unless="${loggedInMember != null}" class="login-button">Login</button>
+  </div>
+</div>
+
+<div class="navigation">
+  <a href="/post/myPage" class="nav-link">답변한 질문</a>
+  <a href="/post/myPage/unanswered" class="nav-link">답변하기 전 질문</a>
+</div>
+
+<div th:each="post : ${posts}" class="questions-container">
+  <div class="question">
+    <div class="question-title" th:text="${post.title}">Title 1</div>
+    <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
+    <div class="additional-info" th:text="${post.getAnswer}">Additional info for question 1.</div>
+  </div>
+</div>
+
+</body>
+</html>
