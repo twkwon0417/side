@@ -112,14 +112,14 @@
   <div>Site Name or Logo</div>
   <div>
     welcome, Username!
-    <button th:if="${loggedInMember != null}" class="logout-button">Logout</button>
-    <button th:unless="${loggedInMember != null}" class="login-button">Login</button>
+    <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
+    <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
   </div>
 </div>
 
 <div class="navigation">
-  <a href="/post/myPage" class="nav-link">답변한 질문</a>
-  <a href="/post/myPage/unanswered" class="nav-link">답변하기 전 질문</a>
+  <a href="#" class="nav-link">답변한 질문</a>
+  <a href="#" class="nav-link">답변하기 전 질문</a>
 </div>
 
 <div th:each="post : ${posts}" class="questions-container">

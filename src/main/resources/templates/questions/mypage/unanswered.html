@@ -118,8 +118,8 @@
     <div>Site Name or Logo</div>
     <div>
         Welcome, Username!
-        <button th:if="${loggedInMember != null}" class="logout-button">Logout</button>
-        <button th:unless="${loggedInMember != null}" class="login-button">Login</button>
+        <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
+        <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
     </div>
 </div>
 

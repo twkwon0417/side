@@ -27,6 +27,17 @@ public class TestData {
 
         Post unansweredPost = new Post(1L, "testTile", "testContent");
         postRepository.save(unansweredPost);
+
+
+        Member member2 = new Member("qqq", "qqq", "qqq", "qqq", "qqq");
+        memberRepository.save(member2);
+
+        Post post2 = new Post(2L, "testTile", "testContent");
+        post2.setAnswer("Test Answer");
+        postRepository.save(post2);
+
+        Post unansweredPost2 = new Post(2L, "testTile", "testContent");
+        postRepository.save(unansweredPost2);
     }
 
 }

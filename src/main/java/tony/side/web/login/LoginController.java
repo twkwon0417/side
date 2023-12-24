@@ -18,6 +18,7 @@ import tony.side.domain.member.Member;
 public class LoginController {
 
     private final LoginService loginService;
+
     @GetMapping("/login")
     public String loginPage(LoginDto loginDto) {
         return "/login/login";
@@ -32,13 +33,20 @@ public class LoginController {
             log.info("로그인 실패");
             return "/login/login";
         }
-        log.info("로그인 성공");
+        log.info("{} 사용자 로그인 성공", loginMember.getId());
 
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember.getId());
 
-
         return "redirect:/post/myPage";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
 }
