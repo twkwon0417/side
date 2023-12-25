@@ -80,7 +80,7 @@
 
 <div class="login-container">
     <h2>Login</h2>
-    <form action="/login" method="post" th:action th:object="${loginDto}">
+    <form action="/login" method="post" th:action="@{/login}" th:object="${loginDto}">
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" th:field="*{loginId}" required>
