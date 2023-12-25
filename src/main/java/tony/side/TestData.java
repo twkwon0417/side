@@ -25,6 +25,10 @@ public class TestData {
         post.setAnswer("Test Answer");
         postRepository.save(post);
 
+        Post post22 = new Post(1L, "testTile", "testContent");
+        post22.setAnswer("Test Answer");
+        postRepository.save(post22);
+
         Post unansweredPost = new Post(1L, "testTile", "testContent");
         postRepository.save(unansweredPost);
 

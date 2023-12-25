@@ -122,9 +122,9 @@
   <a href="#" class="nav-link">답변하기 전 질문</a>
 </div>
 
-<div th:each="post : ${posts}" class="questions-container">
-  <button class="top-right-button">질문하기</button>
-  <div class="question">
+<div class="questions-container">
+  <a class="top-right-button" th:href="@{'/post/' + ${userId} + '/ask'}">질문하기</a>
+  <div class="question" th:each="post : ${posts}">
     <div class="question-title" th:text="${post.title}">Title 1</div>
     <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
     <div class="additional-info" th:text="${post.getAnswer}">Additional info for question 1.</div>

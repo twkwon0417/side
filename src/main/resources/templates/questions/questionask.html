@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,12 +54,12 @@
 </head>
 <body>
 
-<form action="#" method="post">
+<form action="#" th:action th:object="${questionPostDto}" method="post">
   <label for="title">Title:</label>
-  <input type="text" id="title" name="title" required>
+  <input type="text" id="title" name="title" th:field="*{title}" required>
 
   <label for="question">Your Question:</label>
-  <textarea id="question" name="question" rows="4" required></textarea>
+  <textarea id="question" name="question" rows="4" required th:field="*{question}"></textarea>
 
   <button type="submit">Ask Question</button>
 
