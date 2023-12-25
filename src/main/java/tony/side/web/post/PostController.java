@@ -71,4 +71,12 @@ public class PostController {
         postService.write(post);
         return "redirect:/post/{userId}";
     }
+
+    @PostMapping("/answer/{postIndex}")
+    public String addAnswer(@PathVariable int postIndex, String answerText,
+                            @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
+        log.info(answerText);
+        postService.getUnansweredPostByMemberId(memberId).get(postIndex).setAnswer(answerText);
+        return "redirect:/post/myPage";
+    }
 }

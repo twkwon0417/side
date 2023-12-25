@@ -133,8 +133,8 @@
         <div class="question-title" th:text="${post.title}">Title 1</div>
         <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
         <div class="additional-info">
-            <form action="/submit" method="post">
-                <textarea class="textarea-input" name="additionalInfo" placeholder="Enter additional info"></textarea>
+            <form action="/submit" th:action="@{'/post/answer/' + ${postStat.index}}" method="post">
+                <textarea class="textarea-input" name="answerText" placeholder="Enter additional info"></textarea>
                 <button type="submit" class="send-button">Send</button>
             </form>
         </div>
