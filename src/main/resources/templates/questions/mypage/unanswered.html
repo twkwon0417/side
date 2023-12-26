@@ -110,6 +110,19 @@
         .nav-link:first-child {
             border-left: none;
         }
+
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #e44d26; /* Red background color */
+            color: #fff; /* Text color */
+            border: none;
+            padding: 8px;
+            border-radius: 40%; /* Circular shape */
+            cursor: pointer;
+            font-size: 14px; /* Adjust font size as needed */
+        }
     </style>
 </head>
 <body>
@@ -138,6 +151,7 @@
                 <button type="submit" class="send-button">Send</button>
             </form>
         </div>
+        <button th:onclick="|location.href='@{'/post/delete/unanswered/' + ${postStat.index}}'|" class="delete-button">X</button>
     </div>
 </div>
 

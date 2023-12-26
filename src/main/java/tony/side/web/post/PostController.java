@@ -76,7 +76,23 @@ public class PostController {
     public String addAnswer(@PathVariable int postIndex, String answerText,
                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
         log.info(answerText);
-        postService.getUnansweredPostByMemberId(memberId).get(postIndex).setAnswer(answerText);
+        postService.getUnansweredPostByMemberId(memberId).get(postIndex).setAnswer(answerText);     // 수정??
         return "redirect:/post/myPage";
+    }
+
+    @GetMapping("/delete/answered/{postIndex}")
+    public String deleteAnsweredPost(@PathVariable int postIndex,
+                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
+        Long deletePost = postService.getAnsweredPostByMemberId(memberId).get(postIndex).getId();
+        postService.delete(deletePost);
+        return "redirect:/post/myPage";
+    }
+
+    @GetMapping("/delete/unanswered/{postIndex}")
+    public String deleteUnansweredPost(@PathVariable int postIndex,
+                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
+        Long deletePost = postService.getUnansweredPostByMemberId(memberId).get(postIndex).getId();
+        postService.delete(deletePost);
+        return "redirect:/post/myPage/unanswered";
     }
 }

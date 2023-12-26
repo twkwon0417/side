@@ -92,6 +92,20 @@
     .nav-link:first-child {
       border-left: none;
     }
+
+    .delete-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #e44d26; /* Red background color */
+      color: #fff; /* Text color */
+      border: none;
+      padding: 8px;
+      border-radius: 40%; /* Circular shape */
+      cursor: pointer;
+      font-size: 14px; /* Adjust font size as needed */
+    }
+
   </style>
 </head>
 <body>
@@ -115,6 +129,7 @@
     <div class="question-title" th:text="${post.title}">Title 1</div>
     <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
     <div class="additional-info" th:text="${post.getAnswer}">Additional info for question 1.</div>
+    <button th:onclick="|location.href='@{'/post/delete/answered/' + ${postStat.index}}'|" class="delete-button">X</button>
   </div>
 </div>
 
