@@ -130,7 +130,7 @@
 <div class="header">
     <div>Site Name or Logo</div>
     <div>
-        Welcome, Username!
+        welcome, <a th:text="${loggedInMember ?: 'Guest'}">Guest</a>
         <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
         <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
     </div>
@@ -154,8 +154,5 @@
         <button th:onclick="|location.href='@{'/post/delete/unanswered/' + ${postStat.index}}'|" class="delete-button">X</button>
     </div>
 </div>
-
-
-
 </body>
 </html>

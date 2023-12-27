@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import tony.side.SessionConst;
+import tony.side.domain.member.MemberService;
 import tony.side.domain.post.Post;
 import tony.side.domain.post.PostService;
 
@@ -25,6 +26,7 @@ import tony.side.domain.post.PostService;
 public class PostController {
 
     private final PostService postService;
+    private final MemberService memberService;
 
     @GetMapping("/{userId}")
     public String outsidePage(@PathVariable Long userId, Model model,
@@ -34,7 +36,9 @@ public class PostController {
             return "redirect:/post/myPage";
         }
         model.addAttribute("posts", postService.getAnsweredPostByMemberId(userId));
-        model.addAttribute("loggedInMember", loginUserId);
+        if(loginUserId != null) {
+            model.addAttribute("loggedInMember", memberService.findById(loginUserId).getName());
+        }
         return "/questions/viewpage/showingpage";
     }
 
@@ -44,7 +48,9 @@ public class PostController {
         List<Post> answeredPostByMemberId = postService.getAnsweredPostByMemberId(memberId);
 
         model.addAttribute("posts", answeredPostByMemberId);
-        model.addAttribute("loggedInMember", memberId);
+        if(memberId != null) {
+            model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
+        }
 
         return "/questions/mypage/answered";
     }
@@ -55,7 +61,9 @@ public class PostController {
         List<Post> unansweredPostByMemberId = postService.getUnansweredPostByMemberId(memberId);
 
         model.addAttribute("posts", unansweredPostByMemberId);
-        model.addAttribute("loggedInMember", memberId);
+        if (memberId != null) {
+            model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
+        }
 
         return "/questions/mypage/unanswered";
     }
