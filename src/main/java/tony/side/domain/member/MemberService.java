@@ -22,10 +22,10 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    public void editMemberInfo(Long id, Member newMember) { // 아이디, 비밀번호는 못 바꾸지
+    public void editMemberInfo(Long id, Member newMember) { // 아이디는 못 바꾸지
         Member member = memberRepository.findById(id);
         member.setName(newMember.getName());
-        member.setName(newMember.getName());
+        member.setPassword(newMember.getPassword());
         member.setEMail(newMember.getEMail());
         member.setPhoneNumber(newMember.getPhoneNumber());
     }

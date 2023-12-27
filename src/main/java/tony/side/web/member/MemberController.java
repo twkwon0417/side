@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import tony.side.SessionConst;
 import tony.side.domain.member.Member;
 import tony.side.domain.member.MemberService;
 
@@ -50,5 +52,24 @@ public class MemberController {
         }
         model.addAttribute("password", member.getPassword());
         return "login/password";
+    }
+
+    @GetMapping("/changeUserInfo")
+    public String changeForm(ChangeInfoDto changeInfoDto,
+                             @SessionAttribute(name =SessionConst.LOGIN_MEMBER) Long userId) {
+        Member member = memberService.findById(userId);
+        changeInfoDto.setName(member.getName());
+        changeInfoDto.setPassword(member.getPassword());
+        changeInfoDto.setPhoneNumber(member.getPhoneNumber());
+        changeInfoDto.setEMail(member.getEMail());
+        return "/login/changeinfo";
+    }
+
+    @PostMapping("/changeUserInfo")
+    public String changeUserInfo(ChangeInfoDto changeInfoDto,
+                                 @SessionAttribute(name =SessionConst.LOGIN_MEMBER) Long userId) {
+        Member changeMember = changeInfoDto.toMember(memberService.findById(userId).getLoginId());
+        memberService.editMemberInfo(userId, changeMember);
+        return "redirect:/post/myPage";
     }
 }
