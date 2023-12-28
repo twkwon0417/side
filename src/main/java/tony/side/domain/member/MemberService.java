@@ -34,4 +34,8 @@ public class MemberService {
         Member member = memberRepository.findById(id);
         member.setPassword(password);
     }
+
+    public boolean isRegisteredLoginId(String loginId) {
+        return memberRepository.findByLoginId(loginId).isPresent();
+    }
 }

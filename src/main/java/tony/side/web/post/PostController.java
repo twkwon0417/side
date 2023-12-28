@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,7 +76,10 @@ public class PostController {
     }
 
     @PostMapping("/{userId}/ask")
-    public String addPost(QuestionPostDto questionPostDto, BindingResult bindingResult, @PathVariable Long userId) {
+    public String addPost(@Validated QuestionPostDto questionPostDto, BindingResult bindingResult, @PathVariable Long userId) {
+        if (bindingResult.hasErrors()) {
+            return "questions/questionask"; // might error
+        }
         Post post = questionPostDto.toPost(userId);
         postService.write(post);
         return "redirect:/post/{userId}";
@@ -83,6 +88,10 @@ public class PostController {
     @PostMapping("/answer/{postIndex}")
     public String addAnswer(@PathVariable int postIndex, String answerText,
                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
+        if (answerText.isBlank() || answerText.trim().length() > 200) {
+
+            return "redirect:/post/myPage/unanswered"; // error?
+        }
         log.info(answerText);
         postService.getUnansweredPostByMemberId(memberId).get(postIndex).setAnswer(answerText);     // 수정??
         return "redirect:/post/myPage";

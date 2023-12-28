@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -26,8 +27,17 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String signupFinish(SignUpDto signUpDto, BindingResult bindingResult) {
+    public String signupFinish(@Validated SignUpDto signUpDto, BindingResult bindingResult) {
         // TODO: id 중복 처리 잡아내기
+        if (bindingResult.hasErrors()) {
+            return "login/signup";
+        }
+
+        if (memberService.isRegisteredLoginId(signUpDto.getLoginId())) {
+            bindingResult.reject("isRegistered");
+            log.info("id 중복");
+            return "login/signup";
+        }
 
         memberService.join(signUpDto.toMember());
 
@@ -42,7 +52,10 @@ public class MemberController {
     }
 
     @PostMapping("/findPassword")
-    public String findPassword(FindPasswordDto findPasswordDto, BindingResult bindingResult, Model model) {
+    public String findPassword(@Validated FindPasswordDto findPasswordDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "login/password";
+        }
         Member member = memberService.findByLoginIdAndPhoneNumber(
                         findPasswordDto.getLoginId(), findPasswordDto.getPhoneNumber())
                 .orElse(null);
@@ -66,8 +79,11 @@ public class MemberController {
     }
 
     @PostMapping("/changeUserInfo")
-    public String changeUserInfo(ChangeInfoDto changeInfoDto,
+    public String changeUserInfo(@Validated ChangeInfoDto changeInfoDto, BindingResult bindingResult,
                                  @SessionAttribute(name =SessionConst.LOGIN_MEMBER) Long userId) {
+        if (bindingResult.hasErrors()) {
+            return "login/changeinfo";
+        }
         Member changeMember = changeInfoDto.toMember(memberService.findById(userId).getLoginId());
         memberService.editMemberInfo(userId, changeMember);
         return "redirect:/post/myPage";

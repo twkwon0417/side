@@ -1,6 +1,8 @@
 package tony.side.web.member;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import tony.side.domain.member.Member;
@@ -8,14 +10,23 @@ import tony.side.domain.member.Member;
 @Getter
 @AllArgsConstructor
 public class SignUpDto {
+
     @NotBlank
+    @Size(min = 7, max = 12)
     private String loginId;
+
     @NotBlank
+    @Size(min = 7, max = 12)
     private String password;
+
     @NotBlank
+    @Size(min = 2, max = 7)
     private String name;
+
     @NotBlank
+    @Email
     private String eMail;
+
     @NotBlank
     private String phoneNumber;
 

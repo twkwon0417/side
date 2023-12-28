@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import tony.side.SessionConst;
@@ -25,11 +26,15 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Validated LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request) {
 
+        if (bindingResult.hasErrors()) {
+            return "login/login";
+        }
         Member loginMember = loginService.login(loginDto.getLoginId(), loginDto.getPassword());
 
         if (loginMember == null) {
+            bindingResult.reject("로그인 실패");
             log.info("로그인 실패");
             return "login/login";
         }
