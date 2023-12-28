@@ -59,16 +59,16 @@
 <form action="/changeUserInfo" method="post" th:object="${changeInfoDto}">
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" th:field="*{password}" th:placeholder="*{password}" required>
+    <input type="password" id="password" name="password" th:field="*{password}" th:value="*{password}" required>
 
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" th:placeholder="*{name}" required>
+    <input type="text" id="name" name="name" th:field="*{name}" th:value="*{name}" required>
 
     <label for="eMail">Email:</label>
-    <input type="email" id="eMail" name="eMail" th:field="*{eMail}" th:placeholder="*{eMail}" required>
+    <input type="email" id="eMail" name="eMail" th:field="*{eMail}" th:value="*{eMail}" required>
 
     <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" th:placeholder="*{phoneNumber}" required>
+    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" th:value="*{phoneNumber}" required>
 
     <button type="submit">Save Changes</button>
 </form>

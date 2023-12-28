@@ -22,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/signup")
     public String signup(SignUpDto signUpDto) {
-        return "/login/signup";
+        return "login/signup";
     }
 
     @PostMapping("/signup")
@@ -38,7 +38,7 @@ public class MemberController {
 
     @GetMapping("/findPassword")
     public String addForm(FindPasswordDto findPasswordDto) {
-        return "/login/password";
+        return "login/password";
     }
 
     @PostMapping("/findPassword")
@@ -62,7 +62,7 @@ public class MemberController {
         changeInfoDto.setPassword(member.getPassword());
         changeInfoDto.setPhoneNumber(member.getPhoneNumber());
         changeInfoDto.setEMail(member.getEMail());
-        return "/login/changeinfo";
+        return "login/changeinfo";
     }
 
     @PostMapping("/changeUserInfo")

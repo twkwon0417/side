@@ -39,7 +39,7 @@ public class PostController {
         if(loginUserId != null) {
             model.addAttribute("loggedInMember", memberService.findById(loginUserId).getName());
         }
-        return "/questions/viewpage/showingpage";
+        return "questions/viewpage/showingpage";
     }
 
     @GetMapping("/myPage")
@@ -52,7 +52,7 @@ public class PostController {
             model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
         }
 
-        return "/questions/mypage/answered";
+        return "questions/mypage/answered";
     }
 
     @GetMapping("/myPage/unanswered")
@@ -65,12 +65,12 @@ public class PostController {
             model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
         }
 
-        return "/questions/mypage/unanswered";
+        return "questions/mypage/unanswered";
     }
 
     @GetMapping("/{userId}/ask")
     public String askForm(QuestionPostDto questionPostDto) {
-        return "/questions/questionask";
+        return "questions/questionask";
     }
 
     @PostMapping("/{userId}/ask")

@@ -13,7 +13,7 @@ public class HomeController {
     public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long userId, Model model) {
         if (userId ==  null) {
             model.addAttribute(new LoginDto());
-            return "/login/login";
+            return "login/login";
         }
 
         return "redirect:/post/myPage";

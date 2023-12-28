@@ -21,7 +21,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage(LoginDto loginDto) {
-        return "/login/login";
+        return "login/login";
     }
 
     @PostMapping("/login")
@@ -31,7 +31,7 @@ public class LoginController {
 
         if (loginMember == null) {
             log.info("로그인 실패");
-            return "/login/login";
+            return "login/login";
         }
         log.info("{} 사용자 로그인 성공", loginMember.getId());
 
