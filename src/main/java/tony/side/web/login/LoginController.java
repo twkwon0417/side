@@ -34,7 +34,7 @@ public class LoginController {
         Member loginMember = loginService.login(loginDto.getLoginId(), loginDto.getPassword());
 
         if (loginMember == null) {
-            bindingResult.reject("로그인 실패");
+            bindingResult.reject("loginFail");
             log.info("로그인 실패");
             return "login/login";
         }

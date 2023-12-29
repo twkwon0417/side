@@ -55,13 +55,19 @@
         button:hover {
             background-color: #45a049;
         }
+
+        .error {
+            color: #ff0000;
+        }
     </style>
 </head>
 <body>
 <h2>Sign Up</h2>
 
 <form action="/signup" method="post" th:action th:object="${signUpDto}">
-
+    <div th:if="${#fields.hasGlobalErrors()}" class="error">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
+    </div>
     <label for="id">ID:</label>
     <input type="text" id="id" name="loginId" th:field="*{loginId}" required/>
 

@@ -34,7 +34,7 @@ public class MemberController {
         }
 
         if (memberService.isRegisteredLoginId(signUpDto.getLoginId())) {
-            bindingResult.reject("isRegistered");
+            bindingResult.reject("isRegisteredId", "default");
             log.info("id 중복");
             return "login/signup";
         }
@@ -60,7 +60,7 @@ public class MemberController {
                         findPasswordDto.getLoginId(), findPasswordDto.getPhoneNumber())
                 .orElse(null);
         if (member == null) {
-            bindingResult.reject("globalErrorCode", "에러코드 넣어줘야함");
+            bindingResult.reject("notRegisteredInformation", "오류");
             return "login/password";
         }
         model.addAttribute("password", member.getPassword());
