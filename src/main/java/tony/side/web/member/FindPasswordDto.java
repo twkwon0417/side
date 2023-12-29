@@ -1,6 +1,7 @@
 package tony.side.web.member;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -12,5 +13,6 @@ public class FindPasswordDto {
     private String loginId;
 
     @NotBlank
+    @Pattern(regexp="(^$|[0-9]{11})")
     private String phoneNumber;
 }
