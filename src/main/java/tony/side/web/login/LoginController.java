@@ -30,7 +30,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@Validated LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request,
                         @RequestParam(defaultValue = "/") String redirectURL) {
-        log.info("redirectURL= {}", redirectURL);   // 이거 왜 안됨??? 씨발람아
+        log.info("redirectURL= {}", redirectURL);   // 이거 왜 안됨???
 
         if (bindingResult.hasErrors()) {
             return "login/login";
