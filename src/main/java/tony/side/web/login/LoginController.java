@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tony.side.SessionConst;
 import tony.side.domain.login.LoginService;
 import tony.side.domain.member.Member;
@@ -26,7 +28,9 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Validated LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request) {
+    public String login(@Validated LoginDto loginDto, BindingResult bindingResult, HttpServletRequest request,
+                        @RequestParam(defaultValue = "/") String redirectURL) {
+        log.info("redirectURL= {}", redirectURL);   // 이거 왜 안됨??? 씨발람아
 
         if (bindingResult.hasErrors()) {
             return "login/login";
@@ -43,7 +47,8 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember.getId());
 
-        return "redirect:/post/myPage";
+        log.info("어디로 가니?: {}", redirectURL);
+        return "redirect:" + redirectURL;
     }
 
     @GetMapping("/logout")
