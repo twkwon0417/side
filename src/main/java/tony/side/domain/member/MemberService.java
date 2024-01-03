@@ -24,10 +24,7 @@ public class MemberService {
 
     public void editMemberInfo(Long id, Member newMember) { // 아이디는 못 바꾸지
         Member member = memberRepository.findById(id);
-        member.setName(newMember.getName());
-        member.setPassword(newMember.getPassword());
-        member.setEMail(newMember.getEMail());
-        member.setPhoneNumber(newMember.getPhoneNumber());
+        memberRepository.update(id, newMember);
     }
 
     public void changePassword(Long id, String password) {     // parameter 바뀔 가능성 농후

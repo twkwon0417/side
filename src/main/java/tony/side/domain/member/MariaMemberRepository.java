@@ -1,12 +1,10 @@
 package tony.side.domain.member;
 
 import java.sql.PreparedStatement;
-import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -25,12 +23,6 @@ public class MariaMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
-//        SqlParameterSource param = new BeanPropertySqlParameterSource(member);
-//        Number key = jdbcInsert.executeAndReturnKey(param);
-//        member.setId(key.longValue());
-//        log.info(member.toString());
-//        log.info(param.toString());
-//        return member;
         String sql = "insert into portfolio.member(login_id, password, name, e_mail, phone_number)"
                 + "values (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -51,12 +43,19 @@ public class MariaMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findByLoginIdAndPhoneNumber(String loginId, String phoneNumber) {
-        return Optional.empty();
+        String sql = "select id, login_id, password, name, e_mail, phone_number from portfolio.member "
+                + "where login_id = ? and phone_number = ?";
+        try {
+            Member member = template.queryForObject(sql, memberRowMapper(), loginId, phoneNumber);
+            return Optional.of(member);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
     public Member findById(Long id) {
-        String sql = "select id, login_id, password, name, e_mail, phone_number where id = :id";
+        String sql = "select id, login_id, password, name, e_mail, phone_number from portfolio.member where id = ?";
         try {
             return template.queryForObject(sql, memberRowMapper(), id);
         } catch (EmptyResultDataAccessException e) {
@@ -66,16 +65,24 @@ public class MariaMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findByLoginId(String loginId) {
+        String sql = "select id, login_id, password, name, e_mail, phone_number from portfolio.member where login_id = ?";
+        try {
+            Member member = template.queryForObject(sql, memberRowMapper(), loginId);
+            return Optional.of(member);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
-    public List<Member> findAll() {
-        String sql =
-    }
-
-    @Override
-    public void clear() {
-
+    public void update(Long id, Member member) {
+        String sql = "update portfolio.member set password=?, name=?, e_mail=?, phone_number=? where id=?";
+        template.update(sql,
+                member.getPassword(),
+                member.getName(),
+                member.getEMail(),
+                member.getPhoneNumber(),
+                id);
     }
 
     private RowMapper<Member> memberRowMapper() {
