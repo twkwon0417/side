@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static final AtomicLong sequence = new AtomicLong();
