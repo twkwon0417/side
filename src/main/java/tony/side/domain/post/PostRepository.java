@@ -14,5 +14,4 @@ public interface PostRepository {
 
     public void delete(Long id);
 
-    public void clear();
 }
