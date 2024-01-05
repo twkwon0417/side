@@ -2,91 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/templates/css/ee.css}"
+          href="../css/ee.css?after" rel="stylesheet">
     <title>Change User Info</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error {
-            color: #ff0000;
-        }
-    </style>
 </head>
 <body>
 <h2>Change User Info</h2>
 
-<form action="/changeUserInfo" method="post" th:object="${changeInfoDto}">
+<form class="member-form" action="/changeUserInfo" method="post" th:object="${changeInfoDto}">
 
     <div class="error" th:errors="*{password}">
         비밀번호 오류
     </div>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" th:field="*{password}" th:value="*{password}" required>
+    <input class="member-input" type="password" id="password" name="password" th:field="*{password}" th:value="*{password}" required>
 
     <div class="error" th:errors="*{name}">
         이름 오류
     </div>
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" th:value="*{name}" required>
+    <input class="member-input" type="text" id="name" name="name" th:field="*{name}" th:value="*{name}" required>
 
     <div class="error" th:errors="*{eMail}">
         비밀번호 오류
     </div>
     <label for="eMail">Email:</label>
-    <input type="email" id="eMail" name="eMail" th:field="*{eMail}" th:value="*{eMail}" required>
+    <input class="member-input" type="email" id="eMail" name="eMail" th:field="*{eMail}" th:value="*{eMail}" required>
 
     <div class="error" th:errors="*{phoneNumber}">
         비밀번호 오류
     </div>
     <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" th:value="*{phoneNumber}" required>
+    <input class="member-input" type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" th:value="*{phoneNumber}" required>
 
-    <button type="submit">Save Changes</button>
+    <button class="member-button" type="submit">Save Changes</button>
 </form>
 </body>
 </html>

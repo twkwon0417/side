@@ -3,65 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/templates/css/ee.css}"
+        href="../css/ee.css?after" rel="stylesheet">
   <title>Question Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f4;
-    }
-
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #333;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-
-  </style>
 </head>
 <body>
 
-<form action="#" th:action th:object="${questionPostDto}" method="post">
+<form class="ask-question-form" action="#" th:action th:object="${questionPostDto}" method="post">
   <label for="title">Title:</label>
-  <input type="text" id="title" name="title" th:field="*{title}" required>
+  <input class="ask-question-input" type="text" id="title" name="title" th:field="*{title}" required>
 
   <label for="question">Your Question:</label>
-  <textarea id="question" name="question" rows="4" required th:field="*{question}"></textarea>
+  <textarea class="ask-question-input" id="question" name="question" rows="4" required th:field="*{question}"></textarea>
 
-  <button type="submit">Ask Question</button>
+  <button type="submit" class="ask-question-button">Ask Question</button>
 
 </form>
 

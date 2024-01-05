@@ -3,68 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/templates/css/ee.css}"
+          href="../css/ee.css?after" rel="stylesheet">
     <title>Sign Up</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error {
-            color: #ff0000;
-        }
-    </style>
 </head>
 <body>
 <h2>Sign Up</h2>
 
-<form action="/signup" method="post" th:action th:object="${signUpDto}">
+<form class="member-form" action="/signup" method="post" th:action th:object="${signUpDto}">
     <div th:if="${#fields.hasGlobalErrors()}" class="error">
         <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">글로벌 오류 메시지</p>
     </div>
@@ -73,7 +19,7 @@
         아이디 에러
     </div>
     <label for="id">ID:</label>
-    <input type="text" id="id" name="loginId" th:field="*{loginId}" required/>
+    <input class="member-input" type="text" id="id" name="loginId" th:field="*{loginId}" required/>
 
     <br/>
 
@@ -81,7 +27,7 @@
         비밀번호 오류
     </div>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" th:field="*{password}" required/>
+    <input class="member-input" type="password" id="password" name="password" th:field="*{password}" required/>
 
     <br/>
 
@@ -89,7 +35,7 @@
         이름 오류
     </div>
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:field="*{name}" required/>
+    <input class="member-input" type="text" id="name" name="name" th:field="*{name}" required/>
 
     <br/>
 
@@ -97,7 +43,7 @@
         이메일 오류
     </div>
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" th:field="*{eMail}" required/>
+    <input class="member-input" type="email" id="email" name="email" th:field="*{eMail}" required/>
 
     <br/>
 
@@ -105,11 +51,11 @@
         전화번호 오류
     </div>
     <label for="phoneNumber">Phone Number:</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required/>
+    <input class="member-input" type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required/>
 
     <br/>
 
-    <button type="submit">Sign Up</button>
+    <button class="member-button" type="submit">Sign Up</button>
 
 </form>
 </body>
