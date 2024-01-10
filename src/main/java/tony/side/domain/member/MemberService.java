@@ -1,16 +1,24 @@
 package tony.side.domain.member;
 
+
+import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_256;
+
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
     public void join(Member member) {
+        String hashed = new DigestUtils(SHA_256).digestAsHex(member.getPassword());
+        member.setPassword(hashed);
         memberRepository.save(member);
     }
 
