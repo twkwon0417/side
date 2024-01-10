@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/css/style.css}"
+        href="../../static/css/style.css?after" rel="stylesheet">
+  <title>Question Form</title>
+</head>
+<body>
+
+<form class="ask-question-form" action="#" th:action th:object="${questionPostDto}" method="post">
+  <label for="title">Title:</label>
+  <input class="ask-question-input" type="text" id="title" name="title" th:field="*{title}" required>
+
+  <label for="question">Your Question:</label>
+  <textarea class="ask-question-input" id="question" name="question" rows="4" required th:field="*{question}"></textarea>
+
+  <button type="submit" class="ask-question-button">Ask Question</button>
+
+</form>
+
+</body>
+</html>
