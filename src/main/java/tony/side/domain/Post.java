@@ -1,4 +1,4 @@
-package tony.side.domain.post;
+package tony.side.domain;
 
 import lombok.Getter;
 import lombok.Setter;

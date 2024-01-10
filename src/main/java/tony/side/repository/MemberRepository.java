@@ -1,8 +1,7 @@
-package tony.side.domain.member;
+package tony.side.repository;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
+import tony.side.domain.Member;
 
 public interface MemberRepository {
 

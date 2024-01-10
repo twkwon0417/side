@@ -3,11 +3,10 @@ package tony.side;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import tony.side.domain.member.Member;
-import tony.side.domain.member.MemberRepository;
-import tony.side.domain.post.Post;
-import tony.side.domain.post.PostRepository;
-import tony.side.domain.post.PostService;
+import tony.side.domain.Member;
+import tony.side.repository.MemberRepository;
+import tony.side.domain.Post;
+import tony.side.repository.PostRepository;
 
 @Component
 @RequiredArgsConstructor

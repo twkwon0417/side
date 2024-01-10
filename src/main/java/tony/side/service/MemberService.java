@@ -1,4 +1,4 @@
-package tony.side.domain.member;
+package tony.side.service;
 
 
 import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_256;
@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
+import tony.side.domain.Member;
+import tony.side.repository.MemberRepository;
 
 @Service
 @RequiredArgsConstructor

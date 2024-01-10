@@ -1,12 +1,12 @@
-package tony.side.domain.login;
+package tony.side.service;
 
 import static org.apache.commons.codec.digest.MessageDigestAlgorithms.SHA_256;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
-import tony.side.domain.member.Member;
-import tony.side.domain.member.MemberRepository;
+import tony.side.domain.Member;
+import tony.side.repository.MemberRepository;
 
 @Service
 @RequiredArgsConstructor

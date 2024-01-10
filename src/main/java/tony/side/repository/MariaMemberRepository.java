@@ -1,4 +1,4 @@
-package tony.side.domain.member;
+package tony.side.repository;
 
 import java.sql.PreparedStatement;
 import java.util.Optional;
@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import tony.side.domain.Member;
 
 @Repository
 @Slf4j

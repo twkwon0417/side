@@ -1,6 +1,7 @@
-package tony.side.domain.post;
+package tony.side.repository;
 
 import java.util.List;
+import tony.side.domain.Post;
 
 public interface PostRepository {
 

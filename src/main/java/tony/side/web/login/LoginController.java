@@ -8,12 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tony.side.SessionConst;
-import tony.side.domain.login.LoginService;
-import tony.side.domain.member.Member;
+import tony.side.service.LoginService;
+import tony.side.domain.Member;
 
 @Slf4j
 @RequiredArgsConstructor

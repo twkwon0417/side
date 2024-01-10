@@ -3,7 +3,7 @@ package tony.side.web.post;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import tony.side.domain.post.Post;
+import tony.side.domain.Post;
 
 @Data
 public class QuestionPostDto {

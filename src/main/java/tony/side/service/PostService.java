@@ -1,8 +1,10 @@
-package tony.side.domain.post;
+package tony.side.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tony.side.domain.Post;
+import tony.side.repository.PostRepository;
 
 @Service
 @RequiredArgsConstructor

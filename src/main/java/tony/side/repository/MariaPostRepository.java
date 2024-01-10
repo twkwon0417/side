@@ -1,7 +1,6 @@
-package tony.side.domain.post;
+package tony.side.repository;
 
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import tony.side.domain.Post;
 
 @Repository
 @Slf4j

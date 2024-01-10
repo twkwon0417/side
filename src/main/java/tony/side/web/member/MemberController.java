@@ -1,6 +1,5 @@
 package tony.side.web.member;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import tony.side.SessionConst;
-import tony.side.domain.member.Member;
-import tony.side.domain.member.MemberService;
+import tony.side.domain.Member;
+import tony.side.service.MemberService;
 
 @Slf4j
 @Controller
