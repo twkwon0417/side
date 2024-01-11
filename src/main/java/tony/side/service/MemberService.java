@@ -33,7 +33,7 @@ public class MemberService {
     }
 
     public void editMemberInfo(Long id, Member newMember) { // 아이디는 못 바꾸지
-        Member member = memberRepository.findById(id);
+        newMember.setPassword(new DigestUtils(SHA_256).digestAsHex(newMember.getPassword()));
         memberRepository.update(id, newMember);
     }
 

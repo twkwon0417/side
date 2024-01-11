@@ -3,12 +3,12 @@ package tony.side.web.member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tony.side.SessionConst;
 import tony.side.domain.Member;
 import tony.side.service.MemberService;
@@ -51,7 +51,7 @@ public class MemberController {
     }
 
     @PostMapping("/findPassword")
-    public String findPassword(@Validated FindPasswordDto findPasswordDto, BindingResult bindingResult, Model model) {
+    public String findPassword(@Validated FindPasswordDto findPasswordDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "login/password";
         }
@@ -62,8 +62,10 @@ public class MemberController {
             bindingResult.reject("notRegisteredInformation", "오류");
             return "login/password";
         }
-        model.addAttribute("password", member.getPassword());
-        return "login/password";
+        redirectAttributes.addFlashAttribute("email", member.getEMail());
+        redirectAttributes.addAttribute("id", member.getId());
+
+        return "redirect:/mail";
     }
 
     @GetMapping("/changeUserInfo")

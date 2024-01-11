@@ -4,8 +4,8 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tony.side.domain.Member;
-import tony.side.repository.MemberRepository;
 import tony.side.domain.Post;
+import tony.side.repository.MemberRepository;
 import tony.side.repository.PostRepository;
 
 @Component
