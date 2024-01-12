@@ -35,13 +35,13 @@ public class AuthController {
         Long key = (long) authService.sendMail(email);
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.AUTH_KEY, List.of(key, id));
-        session.setMaxInactiveInterval(300);    //
+        session.setMaxInactiveInterval(300);    
 
         return "login/email";
     }
 
     @PostMapping("/mail")
-    public String MailSend(KeyDto keyDto, BindingResult bindingResult,
+    public String MailSend(KeyDto keyDto,
                            @SessionAttribute(value = SessionConst.AUTH_KEY) List<Long> list){
         log.info("{}", list.get(0));
         log.info("{}", list.get(1));
@@ -56,7 +56,7 @@ public class AuthController {
 
     @GetMapping("mail/changepassword")
     public String passwordForm(@SessionAttribute(value = SessionConst.AUTH_KEY) List<Long> list,
-                      ChangeInfoDto changeInfoDto, BindingResult bindingResult) {
+                      ChangeInfoDto changeInfoDto) {
         Member member = memberService.findById(list.get(1));
         changeInfoDto.setName(member.getName());
         changeInfoDto.setPassword(member.getPassword());

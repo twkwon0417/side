@@ -3,7 +3,7 @@ package tony.side.web.post;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import tony.side.domain.Post;
+import tony.side.domain.Question;
 
 @Data
 public class QuestionPostDto {
@@ -14,9 +14,9 @@ public class QuestionPostDto {
 
     @NotBlank
     @Size(max = 200)
-    private String question;
+    private String text;
 
-    public Post toPost(Long userId) {
-        return new Post(userId, this.title, this.question);
+    public Question toQuestion(Long userId) {
+        return new Question(userId, this.title, this.text);
     }
 }

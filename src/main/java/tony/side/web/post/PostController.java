@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import tony.side.SessionConst;
+import tony.side.domain.Question;
 import tony.side.service.MemberService;
 import tony.side.domain.Post;
 import tony.side.service.PostService;
@@ -77,8 +78,8 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "questions/questionask"; // might error
         }
-        Post post = questionPostDto.toPost(userId);
-        postService.write(post);
+        Question question = questionPostDto.toQuestion(userId);
+        postService.write(question);
         return "redirect:/post/{userId}";
     }
 
@@ -90,7 +91,7 @@ public class PostController {
             return "redirect:/post/myPage/unanswered"; // error?
         }
         log.info(answerText);
-        postService.getUnansweredPostByMemberId(memberId).get(postIndex).setAnswer(answerText);     // 수정??
+        postService.answer(memberId, postIndex, answerText);
         return "redirect:/post/myPage";
     }
 
@@ -98,15 +99,14 @@ public class PostController {
     public String deleteAnsweredPost(@PathVariable int postIndex,
                              @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
         Long deletePost = postService.getAnsweredPostByMemberId(memberId).get(postIndex).getId();
-        postService.delete(deletePost);
+        postService.deleteQuestionAnswered(memberId, postIndex);
         return "redirect:/post/myPage";
     }
 
     @GetMapping("/delete/unanswered/{postIndex}")
     public String deleteUnansweredPost(@PathVariable int postIndex,
                              @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
-        Long deletePost = postService.getUnansweredPostByMemberId(memberId).get(postIndex).getId();
-        postService.delete(deletePost);
+        postService.deleteQuestionUnanswered(memberId, postIndex);
         return "redirect:/post/myPage/unanswered";
     }
 }

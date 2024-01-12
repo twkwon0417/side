@@ -3,38 +3,47 @@ package tony.side.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tony.side.domain.Answer;
 import tony.side.domain.Post;
-import tony.side.repository.PostRepository;
+import tony.side.domain.Question;
+import tony.side.repository.AnswerRepository;
+import tony.side.repository.QuestionRepository;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
-    private final PostRepository postRepository;
+    private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
 
-    public void write(Post post) {
-        postRepository.save(post);
+    public void write(Question question) {
+        questionRepository.save(question);
     }
 
-    public Post getById(Long postId) {
-        return postRepository.findById(postId);
+//    public Post getById(Long postId) {
+//        return postRepository.findById(postId);
+//    }
+
+    public void answer(Long memberId, int postIndex, String text) {
+        Long questionId = questionRepository.findUnansweredPostByMemberId(memberId).get(postIndex).getId();
+        answerRepository.save(new Answer(questionId, text));
     }
 
     public List<Post> getUnansweredPostByMemberId(Long memberId) {
-        return postRepository.findUnansweredPostByMemberId(memberId);
+        return questionRepository.findUnansweredPostByMemberId(memberId);
     }
 
     public List<Post> getAnsweredPostByMemberId(Long memberId) {
-        return postRepository.findAnsweredPostByMemberId(memberId);
+        return questionRepository.findAnsweredPostByMemberId(memberId);
     }
 
-    public void edit(Long postId, Post newPost) {
-        Post post = postRepository.findById(postId);
-        post.setTitle(newPost.getTitle());
-        post.setQuestion(newPost.getQuestion());
+    public void deleteQuestionAnswered(Long memberId, int postIndex) {
+        Long questionId = questionRepository.findAnsweredPostByMemberId(memberId).get(postIndex).getId();
+        questionRepository.delete(questionId);
     }
 
-    public void delete(Long postId) {
-        postRepository.delete(postId);
+    public void deleteQuestionUnanswered(Long memberId, int postIndex) {
+        Long questionId = questionRepository.findUnansweredPostByMemberId(memberId).get(postIndex).getId();
+        questionRepository.delete(questionId);
     }
 }
