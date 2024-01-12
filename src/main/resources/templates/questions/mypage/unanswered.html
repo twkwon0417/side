@@ -28,12 +28,12 @@
         <div class="question-title" th:text="${post.title}">Title 1</div>
         <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
         <div class="additional-info">
-            <form action="/submit" th:action="@{'/post/answer/' + ${post.getId}}" method="post">
+            <form action="/submit" th:action="@{'/post/myPage/answer/' + ${post.getId}}" method="post">
                 <textarea class="textarea-input" name="answerText" placeholder="Enter additional info"></textarea>
                 <button type="submit" class="send-button">Send</button>
             </form>
         </div>
-        <button th:onclick="|location.href='@{'/post/delete/' + ${post.getId}}'|" class="delete-button">X</button>
+        <button th:onclick="|location.href='@{'/post/myPage/delete/' + ${post.getId}}'|" class="delete-button">X</button>
     </div>
 </div>
 </body>

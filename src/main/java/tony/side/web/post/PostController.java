@@ -83,7 +83,7 @@ public class PostController {
         return "redirect:/post/{userId}";
     }
 
-    @PostMapping("/answer/{postId}")
+    @PostMapping("/myPage/answer/{postId}")
     public String addAnswer(@PathVariable Long postId, String answerText) {
         if (answerText.isBlank() || answerText.trim().length() > 200) {
 
@@ -94,7 +94,7 @@ public class PostController {
         return "redirect:/post/myPage";
     }
 
-    @GetMapping("/delete/{postId}")
+    @GetMapping("/myPage/delete/{postId}")
     public String deleteAnsweredPost(@PathVariable Long postId) {
         postService.deletePost(postId);
         return "redirect:/post/myPage";
