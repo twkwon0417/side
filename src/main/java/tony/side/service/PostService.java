@@ -20,13 +20,9 @@ public class PostService {
         questionRepository.save(question);
     }
 
-//    public Post getById(Long postId) {
-//        return postRepository.findById(postId);
-//    }
-
-    public void answer(Long memberId, int postIndex, String text) {
-        Long questionId = questionRepository.findUnansweredPostByMemberId(memberId).get(postIndex).getId();
-        answerRepository.save(new Answer(questionId, text));
+    public void answer(Long postId, String text) {
+        Answer answer = new Answer(postId, text);
+        answerRepository.save(answer);
     }
 
     public List<Post> getUnansweredPostByMemberId(Long memberId) {
@@ -37,13 +33,7 @@ public class PostService {
         return questionRepository.findAnsweredPostByMemberId(memberId);
     }
 
-    public void deleteQuestionAnswered(Long memberId, int postIndex) {
-        Long questionId = questionRepository.findAnsweredPostByMemberId(memberId).get(postIndex).getId();
-        questionRepository.delete(questionId);
-    }
-
-    public void deleteQuestionUnanswered(Long memberId, int postIndex) {
-        Long questionId = questionRepository.findUnansweredPostByMemberId(memberId).get(postIndex).getId();
-        questionRepository.delete(questionId);
+    public void deletePost(Long postId) {
+        questionRepository.delete(postId);
     }
 }

@@ -28,7 +28,7 @@
     <div class="question-title" th:text="${post.title}">Title 1</div>
     <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
     <div class="additional-info" th:text="${post.getAnswer}">Additional info for question 1.</div>
-    <button th:onclick="|location.href='@{'/post/delete/answered/' + ${postStat.index}}'|" class="delete-button">X</button>
+    <button th:onclick="|location.href='@{'/post/delete/' + ${post.getId}}'|" class="delete-button">X</button>
   </div>
 </div>
 

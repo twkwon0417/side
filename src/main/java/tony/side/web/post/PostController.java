@@ -83,30 +83,20 @@ public class PostController {
         return "redirect:/post/{userId}";
     }
 
-    @PostMapping("/answer/{postIndex}")
-    public String addAnswer(@PathVariable int postIndex, String answerText,
-                            @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
+    @PostMapping("/answer/{postId}")
+    public String addAnswer(@PathVariable Long postId, String answerText) {
         if (answerText.isBlank() || answerText.trim().length() > 200) {
 
             return "redirect:/post/myPage/unanswered"; // error?
         }
         log.info(answerText);
-        postService.answer(memberId, postIndex, answerText);
+        postService.answer(postId, answerText);
         return "redirect:/post/myPage";
     }
 
-    @GetMapping("/delete/answered/{postIndex}")
-    public String deleteAnsweredPost(@PathVariable int postIndex,
-                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
-        Long deletePost = postService.getAnsweredPostByMemberId(memberId).get(postIndex).getId();
-        postService.deleteQuestionAnswered(memberId, postIndex);
+    @GetMapping("/delete/{postId}")
+    public String deleteAnsweredPost(@PathVariable Long postId) {
+        postService.deletePost(postId);
         return "redirect:/post/myPage";
-    }
-
-    @GetMapping("/delete/unanswered/{postIndex}")
-    public String deleteUnansweredPost(@PathVariable int postIndex,
-                             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Long memberId) {
-        postService.deleteQuestionUnanswered(memberId, postIndex);
-        return "redirect:/post/myPage/unanswered";
     }
 }
