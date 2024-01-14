@@ -8,11 +8,24 @@
   <title>Question Form</title>
 </head>
 <body>
+<div class="header">
+  <a href="https://twkwon0417.shop">
+    <img src="/images/logo.png" width="50px" alt="logo">
+  </a>
+  <div>
+    welcome, <a th:if="${loggedInMember != null}" th:text="${loggedInMember}" href="/changeUserInfo">Guest</a>
+    <a th:unless="${loggedInMember != null}" href="#">Guest</a>
+    <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
+    <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
+  </div>
+</div>
 
 <form class="ask-question-form" action="#" th:action th:object="${questionPostDto}" method="post">
+  <div class="error" th:errors="*{title}"></div>
   <label for="title">Title:</label>
   <input class="ask-question-input" type="text" id="title" name="title" th:field="*{title}" required>
 
+  <div class="error" th:errors="*{text}"></div>
   <label for="question">Your Question:</label>
   <textarea class="ask-question-input" id="question" name="question" rows="4" required th:field="*{text}"></textarea>
 

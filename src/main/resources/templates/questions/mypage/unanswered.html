@@ -10,9 +10,12 @@
 <body>
 
 <div class="header">
-    <div>Site Name or Logo</div>
+    <a href="https://twkwon0417.shop">
+        <img src="/images/logo.png" width="50px" alt="logo">
+    </a>
     <div>
-        welcome, <a th:text="${loggedInMember ?: 'Guest'}" href="/changeUserInfo">Guest</a>
+        welcome, <a th:if="${loggedInMember != null}" th:text="${loggedInMember}" href="/changeUserInfo">Guest</a>
+        <a th:unless="${loggedInMember != null}" href="#">Guest</a>
         <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
         <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
     </div>
@@ -29,6 +32,7 @@
         <div class="question-body" th:text="${post.getQuestion}">This is the body of question 1.</div>
         <div class="additional-info">
             <form action="/submit" th:action="@{'/post/myPage/answer/' + ${post.getId}}" method="post">
+                <div class="error" th:if="${flag == true}">답변은 200글자 안으로 해주세요</div>
                 <textarea class="textarea-input" name="answerText" placeholder="Enter additional info"></textarea>
                 <button type="submit" class="send-button">Send</button>
             </form>

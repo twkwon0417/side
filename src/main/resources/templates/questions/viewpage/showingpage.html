@@ -10,9 +10,12 @@
 <body>
 
 <div class="header">
-  <div>Site Name or Logo</div>
+  <a href="https://twkwon0417.shop">
+  <img src="/images/logo.png" width="50px" alt="logo">
+  </a>
   <div>
-    welcome, <a th:text="${loggedInMember ?: 'Guest'}" href="/changeUserInfo">Guest</a>
+    welcome, <a th:if="${loggedInMember != null}" th:text="${loggedInMember}" href="/changeUserInfo">Guest</a>
+    <a th:unless="${loggedInMember != null}" href="#">Guest</a>
     <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
     <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
   </div>

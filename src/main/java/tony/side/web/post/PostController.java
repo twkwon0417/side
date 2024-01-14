@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tony.side.SessionConst;
+import tony.side.domain.Post;
 import tony.side.domain.Question;
 import tony.side.service.MemberService;
-import tony.side.domain.Post;
 import tony.side.service.PostService;
 
 @Slf4j
@@ -84,9 +85,9 @@ public class PostController {
     }
 
     @PostMapping("/myPage/answer/{postId}")
-    public String addAnswer(@PathVariable Long postId, String answerText) {
+    public String addAnswer(@PathVariable Long postId, String answerText, RedirectAttributes redirectAttributes) {
         if (answerText.isBlank() || answerText.trim().length() > 200) {
-
+            redirectAttributes.addFlashAttribute("flag", true);
             return "redirect:/post/myPage/unanswered"; // error?
         }
         log.info(answerText);

@@ -8,6 +8,18 @@
     <title>Change User Info</title>
 </head>
 <body>
+
+<div class="header">
+    <a href="https://twkwon0417.shop">
+        <img src="/images/logo.png" width="50px" alt="logo">
+    </a>
+    <div>
+        welcome, <a th:if="${loggedInMember != null}" th:text="${loggedInMember}" href="/changeUserInfo">Guest</a>
+        <a th:unless="${loggedInMember != null}" href="#">Guest</a>
+        <button th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
+    </div>
+</div>
+
 <h2>Change User Info</h2>
 
 <form class="member-form" action="/changeUserInfo" method="post" th:object="${changeInfoDto}">

@@ -8,6 +8,16 @@
     <title>Sign Up</title>
 </head>
 <body>
+
+<div class="header">
+    <a href="https://twkwon0417.shop">
+        <img src="/images/logo.png" width="50px" alt="logo">
+    </a>
+    <div>
+        <button  th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
+    </div>
+</div>
+
 <h2>Sign Up</h2>
 
 <form class="member-form" action="/signup" method="post" th:action th:object="${signUpDto}">
