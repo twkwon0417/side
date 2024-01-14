@@ -1,5 +1,6 @@
 package tony.side.service;
 
+import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,15 @@ public class PostService {
     }
 
     public List<Post> getUnansweredPostByMemberId(Long memberId) {
-        return questionRepository.findUnansweredPostByMemberId(memberId);
+        List<Post> posts = questionRepository.findUnansweredPostByMemberId(memberId);
+        Collections.reverse(posts);
+        return posts;
     }
 
     public List<Post> getAnsweredPostByMemberId(Long memberId) {
-        return questionRepository.findAnsweredPostByMemberId(memberId);
+        List<Post> posts = questionRepository.findAnsweredPostByMemberId(memberId);
+        Collections.reverse(posts);
+        return posts;
     }
 
     public void deletePost(Long postId) {
