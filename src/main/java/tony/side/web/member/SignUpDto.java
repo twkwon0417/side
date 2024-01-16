@@ -26,6 +26,7 @@ public class SignUpDto {
 
     @NotBlank
     @Email
+    @Size(max = 40)
     private String eMail;
 
     @NotBlank

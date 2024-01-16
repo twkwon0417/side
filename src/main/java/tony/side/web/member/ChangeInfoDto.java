@@ -20,6 +20,7 @@ public class ChangeInfoDto {
 
     @Email
     @NotBlank
+    @Size(max = 40)
     private String eMail;
 
     @NotBlank
