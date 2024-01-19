@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/style.css}"
           href="../../static/css/style.css?after" rel="stylesheet">
-    <title>Sign Up</title>
+    <title>회원가입</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<h2>Sign Up</h2>
+<h2>회원가입</h2>
 
 <form class="member-form" action="/signup" method="post" th:action th:object="${signUpDto}">
     <div th:if="${#fields.hasGlobalErrors()}" class="error">
@@ -28,7 +28,7 @@
     <div class="error" th:errors="*{loginId}">
         아이디 에러
     </div>
-    <label for="id">ID:</label>
+    <label for="id">아이디:</label>
     <input class="member-input" type="text" id="id" name="loginId" th:field="*{loginId}" required/>
 
     <br/>
@@ -36,7 +36,7 @@
     <div class="error" th:errors="*{password}">
         비밀번호 오류
     </div>
-    <label for="password">Password:</label>
+    <label for="password">비밀번호:</label>
     <input class="member-input" type="password" id="password" name="password" th:field="*{password}" required/>
 
     <br/>
@@ -44,7 +44,7 @@
     <div class="error" th:errors="*{name}">
         이름 오류
     </div>
-    <label for="name">Name:</label>
+    <label for="name">이름:</label>
     <input class="member-input" type="text" id="name" name="name" th:field="*{name}" required/>
 
     <br/>
@@ -60,12 +60,12 @@
     <div class="error" th:errors="*{phoneNumber}">
         전화번호 오류
     </div>
-    <label for="phoneNumber">Phone Number:</label>
+    <label for="phoneNumber">핸드폰 번호:</label>
     <input class="member-input" type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required/>
 
     <br/>
 
-    <button class="member-button" type="submit">Sign Up</button>
+    <button class="member-button" type="submit">가입하기</button>
 
 </form>
 </body>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link th:href="@{/css/style.css}"
         href="../../static/css/style.css?after" rel="stylesheet">
-  <title>Question Form</title>
+  <title>질문하기</title>
 </head>
 <body>
 <div class="header">
@@ -22,14 +22,14 @@
 
 <form class="ask-question-form" action="#" th:action th:object="${questionPostDto}" method="post">
   <div class="error" th:errors="*{title}"></div>
-  <label for="title">Title:</label>
+  <label for="title">제목:</label>
   <input class="ask-question-input" type="text" id="title" name="title" th:field="*{title}" required>
 
   <div class="error" th:errors="*{text}"></div>
-  <label for="question">Your Question:</label>
+  <label for="question">질문:</label>
   <textarea class="ask-question-input" id="question" name="question" rows="4" required th:field="*{text}"></textarea>
 
-  <button type="submit" class="ask-question-button">Ask Question</button>
+  <button type="submit" class="ask-question-button">질문하기</button>
 
 </form>
 

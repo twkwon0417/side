@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,18 +18,18 @@
 <div class="login-container">
     <h2>이메일 인증</h2>
     <form action="/login" method="post" th:action="@{/mail}" th:object="${keyDto}">
-        <div  class="success">
+        <div  class="success" th:if="${email != null}">
             [[${email}]]로 인증번호가 발송되었습니다.
         </div>
         <div class="login-form-group">
             <label for="number">인증 번호: </label>
             <input type="text" id="number" name="number" th:field="*{number}" required>
         </div>
-        <div class="error" th:errors="*{number}">
-            인증번호 에러
+        <div class="error" th:if="${email == null}">
+            인증번호가 다릅니다.
         </div>
         <div class="login-form-group">
-            <button type="submit">Login</button>
+            <button type="submit">로그인</button>
         </div>
     </form>
 </div>
