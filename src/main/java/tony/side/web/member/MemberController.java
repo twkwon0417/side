@@ -3,6 +3,7 @@ package tony.side.web.member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,13 +70,14 @@ public class MemberController {
     }
 
     @GetMapping("/changeUserInfo")
-    public String changeForm(ChangeInfoDto changeInfoDto,
+    public String changeForm(ChangeInfoDto changeInfoDto, Model model,
                              @SessionAttribute(name =SessionConst.LOGIN_MEMBER) Long userId) {
         Member member = memberService.findById(userId);
         changeInfoDto.setName(member.getName());
         changeInfoDto.setPassword(member.getPassword());
         changeInfoDto.setPhoneNumber(member.getPhoneNumber());
         changeInfoDto.setEMail(member.getEMail());
+        model.addAttribute("loggedInMember", memberService.findById(userId).getName());
         return "login/changeinfo";
     }
 
