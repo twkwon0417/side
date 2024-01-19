@@ -49,9 +49,8 @@ public class PostController {
         List<Post> answeredPostByMemberId = postService.getAnsweredPostByMemberId(memberId);
 
         model.addAttribute("posts", answeredPostByMemberId);
-        if(memberId != null) {
-            model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
-        }
+        model.addAttribute("link", "www.twkwon0417.shop/post/" + memberId.toString());
+        model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
 
         return "questions/mypage/answered";
     }
@@ -62,9 +61,8 @@ public class PostController {
         List<Post> unansweredPostByMemberId = postService.getUnansweredPostByMemberId(memberId);
 
         model.addAttribute("posts", unansweredPostByMemberId);
-        if (memberId != null) {
-            model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
-        }
+        model.addAttribute("link", "www.twkwon0417.shop/post/" + memberId.toString());
+        model.addAttribute("loggedInMember", memberService.findById(memberId).getName());
 
         return "questions/mypage/unanswered";
     }
@@ -77,7 +75,7 @@ public class PostController {
     @PostMapping("/{userId}/ask")
     public String addPost(@Validated QuestionPostDto questionPostDto, BindingResult bindingResult, @PathVariable Long userId) {
         if (bindingResult.hasErrors()) {
-            return "questions/questionask"; // might error
+            return "questions/questionask";
         }
         Question question = questionPostDto.toQuestion(userId);
         postService.write(question);
@@ -88,7 +86,7 @@ public class PostController {
     public String addAnswer(@PathVariable Long postId, String answerText, RedirectAttributes redirectAttributes) {
         if (answerText.isBlank() || answerText.trim().length() > 200) {
             redirectAttributes.addFlashAttribute("flag", true);
-            return "redirect:/post/myPage/unanswered"; // error?
+            return "redirect:/post/myPage/unanswered"; //
         }
         log.info(answerText);
         postService.answer(postId, answerText);

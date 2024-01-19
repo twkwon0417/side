@@ -6,6 +6,7 @@
     <link th:href="@{/css/style.css}"
           href="../../../static/css/style.css?after" rel="stylesheet">
     <title>질문</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 </head>
 <body>
 
@@ -16,6 +17,7 @@
     <div>
         welcome, <a th:if="${loggedInMember != null}" th:text="${loggedInMember}" href="/changeUserInfo">Guest</a>
         <a th:unless="${loggedInMember != null}" href="#">Guest</a>
+        <button id="copy-button" th:attr="data-clipboard-text=${link}">내 주소 복사</button>
         <button th:if="${loggedInMember != null}" th:onclick="|location.href='@{/logout}'|" class="logout-button">Logout</button>
         <button th:unless="${loggedInMember != null}" th:onclick="|location.href='@{/login}'|" class="login-button">Login</button>
     </div>
@@ -40,5 +42,12 @@
         <button th:onclick="|location.href='@{'/post/myPage/delete/' + ${post.getId}}'|" class="delete-button">X</button>
     </div>
 </div>
+<script th:inline="javascript">
+    new ClipboardJS('#copyButton');
+
+    document.getElementById('copyButton').addEventListener('click', function() {
+        alert('복사 되었습니다.');
+    });
+</script>
 </body>
 </html>

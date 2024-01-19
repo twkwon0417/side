@@ -102,6 +102,15 @@ body {
     cursor: pointer;
 }
 
+#copy-button {
+    background-color: blueviolet;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .nav-link:last-child {
     border-right: none;
 }
